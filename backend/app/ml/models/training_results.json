@@ -1,0 +1,22 @@
+{
+  "best_model": "XGBoost",
+  "r2": 0.9956,
+  "mae": 263329.0,
+  "rmse": 576371.0,
+  "features": [
+    "state_enc",
+    "season_enc",
+    "festival_name_enc",
+    "month",
+    "year",
+    "is_festival",
+    "temperature",
+    "humidity",
+    "rainfall",
+    "is_peak_season",
+    "festival_impact",
+    "weather_comfort_score",
+    "state_popularity_rank",
+    "domestic_ratio"
+  ]
+}
