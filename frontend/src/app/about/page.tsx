@@ -13,9 +13,10 @@ const techStack = [
 ];
 
 const team = [
-  { role: 'Principal Frontend Engineer', responsibility: 'Dark premium UI, Framer Motion animations, Recharts integration', icon: Code2 },
-  { role: 'Principal Backend Engineer', responsibility: 'FastAPI routes, MongoDB integration, CORS, service layers', icon: Database },
-  { role: 'Principal ML Engineer', responsibility: 'Model training pipeline, feature engineering, prediction API', icon: Brain },
+  { role: '2300030232', responsibility: 'Gummadi Devi Priya', icon: Code2 },
+  { role: '2300030531', responsibility: 'Yashitha', icon: Database },
+  { role: '2300031309', responsibility: 'N. Akhila', icon: Brain },
+  { role: '2300033021', responsibility: 'K. C. Varshitha', icon: Globe },
 ];
 
 const models = [
@@ -142,7 +143,7 @@ export default function About() {
           </div>
           <h2 className="font-manrope text-3xl font-bold text-white">Engineering Team</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {team.map((member, i) => {
             const Icon = member.icon;
             return (

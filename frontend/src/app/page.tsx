@@ -67,12 +67,12 @@ const seasonData = [
 ];
 
 const destinations = [
-  { name: 'Bali, Indonesia', trend: '+22%', density: 'High', status: 'Peak Season' },
-  { name: 'Paris, France', trend: '+14%', density: 'Medium', status: 'Growing' },
-  { name: 'Santorini, Greece', trend: '+31%', density: 'High', status: 'Surge Alert' },
-  { name: 'Machu Picchu, Peru', trend: '+8%', density: 'Low', status: 'Optimal' },
-  { name: 'Tokyo, Japan', trend: '+19%', density: 'Medium', status: 'Growing' },
-  { name: 'Maldives', trend: '+27%', density: 'High', status: 'Peak Season' },
+  { name: 'Goa', trend: '+22%', density: 'High', status: 'Peak Season' },
+  { name: 'Kerala', trend: '+14%', density: 'Medium', status: 'Growing' },
+  { name: 'Rajasthan', trend: '+31%', density: 'High', status: 'Surge Alert' },
+  { name: 'Himachal Pradesh', trend: '+8%', density: 'Low', status: 'Optimal' },
+  { name: 'Tamil Nadu', trend: '+19%', density: 'Medium', status: 'Growing' },
+  { name: 'Uttarakhand', trend: '+27%', density: 'High', status: 'Peak Season' },
 ];
 
 const features = [
@@ -113,8 +113,8 @@ const features = [
   },
   {
     icon: Globe,
-    title: 'Global Coverage',
-    description: 'Monitor 500+ tourist destinations worldwide with unified analytics.',
+    title: 'Nationwide Coverage',
+    description: 'Monitor tourist destinations across India with unified analytics.',
     color: '#4a90d9',
     bg: 'rgba(74, 144, 217, 0.12)',
   },
@@ -212,8 +212,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <Section>
             <div className="text-center mb-14">
-              <h2 className="font-manrope text-4xl font-bold text-white mb-4">Tourism Insights at a Glance</h2>
-              <p className="text-gray-500 max-w-2xl mx-auto">Live metrics from our global tourism analytics pipeline.</p>
+              <p className="text-gray-500 max-w-2xl mx-auto">Live metrics from our India tourism analytics pipeline.</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {insights.map((item, i) => (
@@ -287,7 +286,7 @@ export default function Home() {
             <div className="text-center mb-16">
               <span className="text-[#27ae60] font-semibold text-sm uppercase tracking-widest">Live Monitoring</span>
               <h2 className="font-manrope text-4xl md:text-5xl font-bold text-white mt-3 mb-5">
-                Top Destinations Worldwide
+                Top Destinations Across India
               </h2>
               <p className="text-gray-500 max-w-2xl mx-auto">
                 Real-time tourist density, trend data, and season alerts from our monitored destinations.
@@ -427,7 +426,7 @@ export default function Home() {
                 <span className="text-gradient">Tourism Intelligence?</span>
               </h2>
               <p className="text-gray-400 text-xl mb-10 max-w-2xl mx-auto">
-                Join tourism authorities worldwide using EcoTour Analytics to protect destinations, grow sustainably, and forecast with confidence.
+                Join tourism authorities across India using EcoTour Analytics to protect destinations, grow sustainably, and forecast with confidence.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/dashboard" className="group inline-flex items-center justify-center px-10 py-4 bg-[#7A1C1C] hover:bg-[#8b2020] text-white rounded-xl font-bold text-lg transition-all shadow-2xl shadow-red-900/40">
