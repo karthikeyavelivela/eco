@@ -91,8 +91,6 @@ export interface Prediction {
 export interface PredictionInput {
   state: string;
   month: number;
-  weather_temp: number;
-  humidity: number;
   festival: string;
   season: string;
 }
@@ -105,8 +103,6 @@ export function makePrediction(input: PredictionInput): Promise<Prediction> {
   const params = new URLSearchParams({
     state: input.state,
     month: input.month.toString(),
-    weather_temp: input.weather_temp.toString(),
-    humidity: input.humidity.toString(),
     festival: input.festival,
     season: input.season,
   });

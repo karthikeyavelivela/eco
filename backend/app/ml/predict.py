@@ -90,8 +90,7 @@ class IndiaPredictor:
             print(f"⚠️  Could not load ML model: {e} — using rule-based fallback")
         return False
 
-    def _ml_predict(self, state: str, month: int, weather_temp: float,
-                    humidity: float, festival: str, season: str) -> int:
+    def _ml_predict(self, state: str, month: int, festival: str, season: str) -> int:
         """Predict using the trained ML model."""
         import numpy as np
         import pandas as pd
@@ -103,8 +102,8 @@ class IndiaPredictor:
             "month": month,
             "year": 2025,
             "is_festival": 1 if festival != "None" else 0,
-            "temperature": weather_temp,
-            "humidity": humidity,
+            "temperature": 25.0,
+            "humidity": 60.0,
             "rainfall": 0.0,
             "domestic_tourists": STATE_BASE_MONTHLY.get(state, 1000000),
             "foreign_tourists": int(STATE_BASE_MONTHLY.get(state, 1000000) * 0.05),
@@ -129,8 +128,7 @@ class IndiaPredictor:
         prediction = self._model.predict(X_scaled)[0]
         return max(int(prediction), 1000)
 
-    def _rule_predict(self, state: str, month: int, weather_temp: float,
-                      humidity: float, festival: str, season: str) -> int:
+    def _rule_predict(self, state: str, month: int, festival: str, season: str) -> int:
         """Fallback rule-based prediction engine."""
         base = STATE_BASE_MONTHLY.get(state, 1000000)
         month_f = MONTHLY_FACTORS.get(month, 1.0)
@@ -138,19 +136,13 @@ class IndiaPredictor:
         festival_f = FESTIVAL_MULT.get(festival, 1.0)
 
         # Temperature comfort factor (optimal 15–28°C for India tourism)
-        if 15 <= weather_temp <= 28:
-            temp_f = 1.05
-        elif weather_temp < 10 or weather_temp > 42:
-            temp_f = 0.75
-        else:
-            temp_f = 0.90
+        temp_f = 1.05
 
         noise = random.uniform(0.92, 1.08)
         predicted = int(base * month_f * season_f * festival_f * temp_f * noise)
         return max(predicted, 1000)
 
-    def predict(self, state: str, month: int, weather_temp: float = 25.0,
-                humidity: float = 60.0, festival: str = "None", season: str = "Winter") -> dict:
+    def predict(self, state: str, month: int, festival: str = "None", season: str = "Winter") -> dict:
         """
         Generate a tourism prediction for an Indian state.
         Returns: { date, state, predicted_tourists, demand_level, month, festival }
@@ -160,9 +152,9 @@ class IndiaPredictor:
                        "July", "August", "September", "October", "November", "December"]
 
         if self._use_ml:
-            predicted = self._ml_predict(state, month, weather_temp, humidity, festival, season)
+            predicted = self._ml_predict(state, month, festival, season)
         else:
-            predicted = self._rule_predict(state, month, weather_temp, humidity, festival, season)
+            predicted = self._rule_predict(state, month, festival, season)
 
         # Determine demand level relative to state base
         base = STATE_BASE_MONTHLY.get(state, 1000000)

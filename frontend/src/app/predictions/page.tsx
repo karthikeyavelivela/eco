@@ -32,8 +32,6 @@ export default function Predictions() {
   const [form, setForm] = useState({
     state: 'Rajasthan',
     month: new Date().getMonth() + 1,
-    weather_temp: 22,
-    humidity: 55,
     festival: 'Diwali',
     season: 'Winter',
   });
@@ -115,24 +113,7 @@ export default function Predictions() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2 block flex items-center gap-1.5"><Thermometer className="w-3.5 h-3.5" /> Temp (°C)</label>
-                <input
-                  type="number" value={form.weather_temp} min={0} max={50}
-                  onChange={e => setForm(f => ({ ...f, weather_temp: parseFloat(e.target.value) }))}
-                  className="dark-input w-full rounded-xl px-4 py-3 text-white bg-white/5 border border-white/10 text-sm focus:outline-none focus:border-[#7A1C1C]/60"
-                />
-              </div>
-              <div>
-                <label className="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2 block flex items-center gap-1.5"><Droplets className="w-3.5 h-3.5" /> Humidity (%)</label>
-                <input
-                  type="number" value={form.humidity} min={0} max={100}
-                  onChange={e => setForm(f => ({ ...f, humidity: parseFloat(e.target.value) }))}
-                  className="dark-input w-full rounded-xl px-4 py-3 text-white bg-white/5 border border-white/10 text-sm focus:outline-none focus:border-[#7A1C1C]/60"
-                />
-              </div>
-            </div>
+
 
             <div>
               <label className="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2 block flex items-center gap-1.5"><Star className="w-3.5 h-3.5" /> Festival / Event</label>

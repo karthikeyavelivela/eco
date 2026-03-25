@@ -35,8 +35,6 @@ def get_predictor():
 async def make_prediction(
     state: str = Query(..., description="Indian state name"),
     month: int = Query(..., ge=1, le=12, description="Month (1-12)"),
-    weather_temp: float = Query(25.0, description="Temperature in °C"),
-    humidity: float = Query(60.0, description="Humidity percentage"),
     festival: Optional[str] = Query("None", description="Ongoing festival"),
     season: Optional[str] = Query("Winter", description="Season: Winter/Spring/Summer/Monsoon/Autumn"),
 ):
@@ -48,8 +46,6 @@ async def make_prediction(
     result = predictor.predict(
         state=state,
         month=month,
-        weather_temp=weather_temp,
-        humidity=humidity,
         festival=festival or "None",
         season=season or "Winter",
     )
