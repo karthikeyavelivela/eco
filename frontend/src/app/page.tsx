@@ -133,13 +133,24 @@ export default function Home() {
     <div className="flex flex-col w-full">
       {/* ── HERO ─────────────────────────────────────────────────────── */}
       <section className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-4 py-20">
-        {/* Animated blobs */}
-        <div className="blob w-[600px] h-[600px] bg-[#7A1C1C] top-[-100px] left-[-200px]" style={{ animationDelay: '0s' }} />
-        <div className="blob w-[500px] h-[500px] bg-[#1B4332] bottom-[-100px] right-[-150px]" style={{ animationDelay: '3s' }} />
-        <div className="blob w-[400px] h-[400px] bg-[#1B263B] top-[50%] left-[50%]" style={{ opacity: 0.1, animationDelay: '5s' }} />
+
+        {/* ── BACKGROUND VIDEO ── */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source src="https://res.cloudinary.com/dqwm8wgg8/video/upload/v1774430474/qqshfvfojm8hecvcvyqi.mp4" type="video/mp4" />
+        </video>
+
+        {/* Dark overlay for theme match */}
+        <div className="absolute inset-0 bg-[#0D0D0D]/70 z-0 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-black/40 z-0" />
 
         {/* Grid overlay */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+        <div className="absolute inset-0 opacity-[0.05] z-0 pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -315,12 +326,11 @@ export default function Home() {
                   </div>
                   <div className="text-right">
                     <div className="text-green-400 font-bold text-sm">{dest.trend}</div>
-                    <span className={`text-xs px-2 py-0.5 rounded-full mt-1 inline-block ${
-                      dest.status === 'Surge Alert' ? 'bg-red-900/40 text-red-400' :
-                      dest.status === 'Peak Season' ? 'bg-yellow-900/40 text-yellow-400' :
-                      dest.status === 'Growing' ? 'bg-blue-900/40 text-blue-400' :
-                      'bg-green-900/40 text-green-400'
-                    }`}>{dest.status}</span>
+                    <span className={`text-xs px-2 py-0.5 rounded-full mt-1 inline-block ${dest.status === 'Surge Alert' ? 'bg-red-900/40 text-red-400' :
+                        dest.status === 'Peak Season' ? 'bg-yellow-900/40 text-yellow-400' :
+                          dest.status === 'Growing' ? 'bg-blue-900/40 text-blue-400' :
+                            'bg-green-900/40 text-green-400'
+                      }`}>{dest.status}</span>
                   </div>
                 </motion.div>
               ))}
@@ -368,10 +378,10 @@ export default function Home() {
                       </defs>
                       <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
                       <XAxis dataKey="month" stroke="#555" tick={{ fill: '#777', fontSize: 12 }} />
-                      <YAxis stroke="#555" tick={{ fill: '#777', fontSize: 12 }} tickFormatter={(v) => `${(v/1000).toFixed(0)}k`} />
+                      <YAxis stroke="#555" tick={{ fill: '#777', fontSize: 12 }} tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} />
                       <Tooltip
                         contentStyle={{ background: '#1A1A1A', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 12, color: '#E5E5E5' }}
-                        formatter={(val: number) => [val.toLocaleString(), '']}
+                        formatter={(val: any) => [Number(val).toLocaleString(), '']}
                       />
                       <Area type="monotone" dataKey="visitors" stroke="#c0392b" fill="url(#gradVisitors)" strokeWidth={2} name="Actual" />
                       <Area type="monotone" dataKey="forecast" stroke="#27ae60" fill="url(#gradForecast)" strokeWidth={2} strokeDasharray="5 5" name="Forecast" />
@@ -388,10 +398,10 @@ export default function Home() {
                     <BarChart data={seasonData}>
                       <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
                       <XAxis dataKey="season" stroke="#555" tick={{ fill: '#777', fontSize: 12 }} />
-                      <YAxis stroke="#555" tick={{ fill: '#777', fontSize: 12 }} tickFormatter={(v) => `${(v/1000).toFixed(0)}k`} />
+                      <YAxis stroke="#555" tick={{ fill: '#777', fontSize: 12 }} tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} />
                       <Tooltip
                         contentStyle={{ background: '#1A1A1A', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 12, color: '#E5E5E5' }}
-                        formatter={(val: number) => [val.toLocaleString(), 'Visitors']}
+                        formatter={(val: any) => [Number(val).toLocaleString(), 'Visitors']}
                         cursor={{ fill: 'rgba(255,255,255,0.04)' }}
                       />
                       <Bar dataKey="avg" radius={[8, 8, 0, 0]} name="Avg Visitors"
